@@ -29,3 +29,13 @@ print(d1.name)
 print(d2.name)
 d1.make_noise()
 d2.make_noise()
+
+d1 = None
+
+choice = input("Enter whether you like to create an Animal or Dog object ?")
+if choice == 'Animal':
+    d1 = Animal("Black", 2)
+elif choice == 'Dog':
+    d1 = Dog("Fido", "Black", 2)
+
+d1.make_noise()
