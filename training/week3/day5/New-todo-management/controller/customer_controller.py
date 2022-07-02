@@ -29,7 +29,6 @@ def get_customer_by_customer_id(customer_id):
 @uc.route('/customers/<customer_id>', methods=['DELETE'])
 def del_customer_by_customer_id(customer_id):
     try:
-
         customer_service.del_customer_by_customer_id(customer_id)
 
         return {
@@ -56,9 +55,16 @@ def add_customer():
 
 
 @uc.route('/customers/<customer_id>', methods=['PUT'])
-def edit_customer_by_customer_id(customer_id):
-    customer_json_dictionary = request.get_json()
-    customer_object = Customer(customer_json_dictionary['customer_name'],
-                               customer_json_dictionary['mobile_num'], customer_json_dictionary['email'])
+def update_customer_by_customer_id(customer_id):
 
-    return customer_service.edit_customer_by_customer_id(customer_object)
+    customer_json_dictionary = request.get_json()
+    customer_object = Customer(customer_json_dictionary['id'], customer_id, customer_json_dictionary['customer_name'],
+                              customer_json_dictionary['mobile_num'], customer_json_dictionary['email'])
+    try:
+        return customer_service.update_customer_by_customer_id(customer_object)
+
+    except CustomerNotFoundError as e:
+        return {
+                    "message": f"Customer with customer_id {customer_id} not found !"
+        }, 404
+

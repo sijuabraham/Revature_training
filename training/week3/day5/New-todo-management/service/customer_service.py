@@ -22,7 +22,6 @@ class CustomerService:
 
     def get_customer_by_customer_id(self, customer_id):
         customer_obj = self.customer_dao.get_customer_by_customer_id(customer_id)
-
         if not customer_obj:
             raise CustomerNotFoundError()
 
@@ -47,11 +46,15 @@ class CustomerService:
 
     def del_customer_by_customer_id(self, customer_id):
 
-        if not CustomerDao.del_customer_by_customer_id(customer_id,):
+        if not self.customer_dao.del_customer_by_customer_id(customer_id):
             raise CustomerNotFoundError()
 
     # Invoke edit_user_by_username in DAO, passing in a username and user_object
     # Return the dictionary representation of the return value for that method
-    def edit_customer_by_customer_id(self, customer_object):
-        updated_customer_object = self.customer_dao.edit_customer_by_customer_id(customer_object)
+    def update_customer_by_customer_id(self, customer_object):
+
+        updated_customer_object = self.customer_dao.update_customer_by_customer_id(customer_object)
+        if not updated_customer_object:
+            raise CustomerNotFoundError()
+
         return updated_customer_object.to_dict()

@@ -46,8 +46,8 @@ class CustomerDao:
             conn.commit()
 
             return Customer(customer_row_that_was_just_inserted[0], customer_row_that_was_just_inserted[1],
-                            customer_row_that_was_just_inserted[2], customer_row_that_was_just_inserted[3],
-                            customer_row_that_was_just_inserted)
+                            customer_row_that_was_just_inserted[2], customer_row_that_was_just_inserted[3],customer_row_that_was_just_inserted[4])
+
 
     def del_customer_by_customer_id(self, customer_id):
 
@@ -56,13 +56,12 @@ class CustomerDao:
             cur = conn.cursor()
 
             cur.execute("delete from customers where customer_id = %s", (customer_id,))
-
+            # print(cur.fetchone())
             rows_deleted = cur.rowcount
-            if rows_deleted != 1:
 
+            if rows_deleted != 1:
                 return False
             else:
-
                 conn.commit()
                 return True
 
@@ -87,28 +86,25 @@ class CustomerDao:
 
             return Customer(c_id, customer_id, customer_name, customer_mobile_num,  customer_email)
 
-    def edit_customer_by_customer_id(self, customer_object):
+    def update_customer_by_customer_id(self, customer_object):
 
         with psycopg.connect(host="127.0.0.1", port="5432", dbname="postgres", user="postgres",
                              password="postgres123") as conn:
 
-            cust_id = customer_object.customer_id
-            cust_name = customer_object.customer_name
-            cust_mobile = customer_object.mobile_num
-            cust_email = customer_object.email
             cur = conn.cursor()
 
-            cur.execute("update customers set customer_name = %s, mobile_num = %s,"
-                        " email = %s returning * where  customer_id = %s",
-                        (cust_name, cust_mobile, cust_email, customer_object.customer_id,))
+            cur.execute("update customers set id = %s, customer_id = %s, customer_name = %s, mobile_num = %s, email = %s  where  customer_id = %s returning *", (customer_object.id, customer_object.customer_id, customer_object.customer_name, customer_object.mobile_num, customer_object.email, customer_object.customer_id))
+            customer_row = cur.rowcount
+            if customer_row != 1:
+                return False
 
+            conn.commit()
             updated_customer_row = cur.fetchone()
-            # c_id = updated_customer_row[0]
-            # cust_id = updated_customer_row[1]
+            c_id = updated_customer_row[0]
+            cust_id = updated_customer_row[1]
             cust_name = updated_customer_row[2]
             cust_mobile = updated_customer_row[3]
             cust_email = updated_customer_row[4]
 
-            return Customer(cust_name, cust_mobile, cust_email)
-
+            return Customer(c_id, cust_id, cust_name, cust_mobile, cust_email)
 
