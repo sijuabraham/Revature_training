@@ -1,7 +1,7 @@
 from dao.accounts_dao import AccountDao
 from dao.customer_dao import CustomerDao
-from service.customer_service import CustomerService
-from exception.invalid_parameter import InvalidParameterError
+from dao.accounts_dao import AccountDao
+from exception.account_not_found import AccountNotFoundError
 from exception.customer_not_found import CustomerNotFoundError
 
 
@@ -23,3 +23,35 @@ class AccountService:
                 list_of_account_dictionaries.append(account_obj.to_dict())
 
             return list_of_account_dictionaries
+
+    def get_accounts_by_customer_id_and_account_id(self, customer_id, account_id):
+        if self.customer_dao.get_customer_by_customer_id(customer_id) is None:
+            raise CustomerNotFoundError()
+        if self.account_dao.get_accounts_by_customer_id_and_account_id(customer_id, account_id) is None:
+            raise AccountNotFoundError()
+
+        list_of_account_objects = self.account_dao.get_accounts_by_customer_id_and_account_id(customer_id, account_id)
+        list_of_account_dictionaries = []
+        for account_obj in list_of_account_objects:
+            list_of_account_dictionaries.append(account_obj.to_dict())
+
+        return list_of_account_dictionaries
+
+    def add_accounts_for_customer_by_customer_id(self, account_object):
+        if self.customer_dao.get_customer_by_customer_id(account_object.cust_id) is None:
+            raise CustomerNotFoundError()
+
+        added_account_object = self.account_dao.add_accounts_for_customer_by_customer_id(account_object)
+        return added_account_object.to_dict()
+    def update_accounts_for_customer_by_customer_id(self, account_object):
+
+        updated_account_object = self.account_dao.update_accounts_for_customer_by_customer_id(account_object)
+        if not updated_account_object:
+            raise CustomerNotFoundError()
+
+        return updated_account_object.to_dict()
+
+    def del_accounts_for_customer_by_customer_id(self, customer_id, a_id):
+
+        if not self.account_dao.del_accounts_for_customer_by_customer_id(customer_id, a_id):
+            raise CustomerNotFoundError()
