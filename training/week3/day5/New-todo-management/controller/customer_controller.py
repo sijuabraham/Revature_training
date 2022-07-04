@@ -8,7 +8,7 @@ uc = Blueprint('customer_controller', __name__)
 customer_service = CustomerService()
 
 
-@uc.route('/customers' )
+@uc.route('/customers')
 def get_all_customers():
     return {
         "customers": customer_service.get_all_customers()  # a list of dictionaries
