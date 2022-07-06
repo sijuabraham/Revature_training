@@ -9,6 +9,8 @@ class CustomerService:
         self.customer_dao = CustomerDao()
 
     def get_all_customers(self):
+
+         # return self.customer_dao.get_all_customers()
         list_of_customer_objects = self.customer_dao.get_all_customers()
 
         # Method #1. use a for loop and do it manually
@@ -17,8 +19,8 @@ class CustomerService:
             list_of_customer_dictionaries.append(customer_obj.to_dict())
 
         return list_of_customer_dictionaries
-        # Method #2, use map
-        # return list(map(lambda x:x.to_dict(), list_of_user_objects)
+        # # Method #2, use map
+        # # return list(map(lambda x:x.to_dict(), list_of_user_objects)
 
     def get_customer_by_customer_id(self, customer_id):
         customer_obj = self.customer_dao.get_customer_by_customer_id(customer_id)

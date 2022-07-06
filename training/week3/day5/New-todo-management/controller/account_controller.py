@@ -18,14 +18,49 @@ class AccountNotfoundError:
 
 @tc.route('/customers/<customer_id>/accounts')
 def get_all_accounts_by_customer_id(customer_id):
+    query_params1 = request.args.get("amountgreaterthan")
+    query_params2 = request.args.get("amountlessthan")
+    # print(query_params)
     try:
-        return {
-            "Accounts": account_service.get_all_accounts_by_customer_id(customer_id)  # a list of dictionaries
-        }
+        if  query_params1 is not None and query_params2 is not None:
+
+            return {
+                "Accounts": account_service.get_all_accounts_by_customer_id(customer_id, query_params1, query_params2)  # a list of dictionaries
+            }
+        elif query_params1 is not None:
+            # query_params2 = 0
+
+            return{
+
+            "Accounts": account_service.get_all_accounts_by_customer_id(customer_id, query_params1, query_params2)
+            # a list of dictionaries
+
+            }
+        elif query_params2 is not None:
+
+         return{
+
+            "Accounts": account_service.get_all_accounts_by_customer_id(customer_id, query_params1, query_params2)
+            # a list of dictionaries
+
+            }
+        else:
+
+            return {
+            "Accounts": account_service.get_all_accounts_by_customer_id(customer_id, query_params1, query_params2)  # a list of dictionaries
+            }
     except CustomerNotFoundError as e:
         return {
             "message": f"Customer with customer_id {customer_id} not found"
-         }, 404
+        }, 404
+    # try:
+    #     return {
+    #         "Accounts": account_service.get_all_accounts_by_customer_id(customer_id)  # a list of dictionaries
+    #     }
+    # except CustomerNotFoundError as e:
+    #     return {
+    #         "message": f"Customer with customer_id {customer_id} not found"
+    #      }, 404
 
 @tc.route('/customers/<customer_id>/accounts/<account_id>')
 def get_accounts_by_customer_id_and_account_id(customer_id, account_id):
@@ -77,7 +112,7 @@ def del_accounts_for_customer_by_customer_id(customer_id, a_id):
         account_service.del_accounts_for_customer_by_customer_id(customer_id, a_id)
 
         return {
-                "message": f"Customer customer_id{customer_id} and account_id {a_id} deleted successfully"
+                "message": f"Customer customer_id{customer_id} having account_id {a_id} deleted successfully"
             }
     except CustomerNotFoundError as e:
         return {

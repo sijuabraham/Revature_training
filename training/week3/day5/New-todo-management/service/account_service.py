@@ -11,13 +11,13 @@ class AccountService:
         self.account_dao = AccountDao()
         self.customer_dao = CustomerDao()
 
-    def get_all_accounts_by_customer_id(self, customer_id):
+    def get_all_accounts_by_customer_id(self, customer_id, query_params1, query_params2):
 
         # return list(map(lambda a: a.to_dict(), self.account_dao.get_all_accounts_by_customer_id(customer_id)))
             if self.customer_dao.get_customer_by_customer_id(customer_id) is None:
                 raise CustomerNotFoundError()
 
-            list_of_account_objects = self.account_dao.get_all_accounts_by_customer_id(customer_id)
+            list_of_account_objects = self.account_dao.get_all_accounts_by_customer_id(customer_id, query_params1, query_params2)
             list_of_account_dictionaries = []
             for account_obj in list_of_account_objects:
                 list_of_account_dictionaries.append(account_obj.to_dict())
