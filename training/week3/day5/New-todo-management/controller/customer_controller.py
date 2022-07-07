@@ -1,4 +1,6 @@
 from flask import Blueprint, request
+
+from exception.customer_already_exists import CustomerAlreadyExistsError
 from service.customer_service import CustomerService
 from model.customer import Customer
 from exception.invalid_parameter import InvalidParameterError
@@ -24,7 +26,7 @@ def get_customer_by_customer_id(customer_id):
 
     except CustomerNotFoundError as e:
         return{
-            "message": f"Customer with customer_id {customer_id} was not found! "
+            "message": f"Customer with customer_id {customer_id} was not found "
         }, 404
 
 
@@ -34,11 +36,11 @@ def del_customer_by_customer_id(customer_id):
         customer_service.del_customer_by_customer_id(customer_id)
 
         return {
-                "message": f"Customer with customer_id{customer_id} deleted successfully"
+                "message": f"Customer with customer_id {customer_id} deleted successfully"
             }
     except CustomerNotFoundError as e:
         return {
-                "message": f"Customer with customer_id{customer_id} not found"
+                "message": f"Customer with customer_id {customer_id} not found"
             }, 404
 
 
@@ -54,7 +56,10 @@ def add_customer():
         return {
             "message": str(e)
         }, 400
-
+    except CustomerAlreadyExistsError as e:
+        return {
+            "message": str(e)
+        }, 400
 
 @uc.route('/customers/<customer_id>', methods=['PUT'])
 def update_customer_by_customer_id(customer_id):

@@ -1,4 +1,5 @@
 from dao.customer_dao import CustomerDao
+from exception.customer_already_exists import CustomerAlreadyExistsError
 from exception.invalid_parameter import InvalidParameterError
 from exception.customer_not_found import CustomerNotFoundError
 
@@ -38,10 +39,13 @@ class CustomerService:
 
     def add_customer(self, customer_object):
         if " " in customer_object.customer_id:
-            raise InvalidParameterError("Customerid cannot contain spaces")
+            raise InvalidParameterError("Customer_id cannot contain spaces")
 
         if len(customer_object.customer_id) < 3:
-            raise InvalidParameterError("Customerid must be at least 6 characters")
+            raise InvalidParameterError("Customer_id must be at least 3 characters")
+
+        if self.customer_dao.get_customer_by_customer_id(customer_object.customer_id) is not None:
+            raise CustomerAlreadyExistsError(f"Customer with customer_id {customer_object.customer_id} already exists in the database")
 
         added_customer_object = self.customer_dao.add_customer(customer_object)
         return added_customer_object.to_dict()
@@ -60,3 +64,4 @@ class CustomerService:
             raise CustomerNotFoundError()
 
         return updated_customer_object.to_dict()
+
