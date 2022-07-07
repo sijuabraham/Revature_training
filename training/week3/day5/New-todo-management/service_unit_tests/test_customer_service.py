@@ -57,9 +57,9 @@ def test_get_customer_by_customer_id_negative(mocker):
     mocker.patch('dao.customer_dao.CustomerDao.get_customer_by_customer_id', mock_get_customer_by_customer_id)
     customer_service = CustomerService()
 
-    with pytest.raises(CustomerNotFoundError):
-            actual = customer_service.get_customer_by_customer_id("1000")
-    # assert str(excinfo.value) == "Customer with customer_id 555 was not found"
+    with pytest.raises(CustomerNotFoundError) as excinfo:
+            customer_service.get_customer_by_customer_id("1000")
+    assert str(excinfo.value) == "Customer with customer_id 1000 was not found"
 
 def test_del_customer_by_customer_id_positive(mocker):
     def mock_del_customer_by_customer_id(self, customer_id):
@@ -82,8 +82,9 @@ def test_del_customer_by_customer_id_negative(mocker):
 
     mocker.patch('dao.customer_dao.CustomerDao.del_customer_by_customer_id', mock_del_customer_by_customer_id)
     customer_service = CustomerService()
-    with pytest.raises(CustomerNotFoundError):
+    with pytest.raises(CustomerNotFoundError) as excinfo:
          customer_service.del_customer_by_customer_id("333")
+    assert str(excinfo.value) == "Customer with customer_id 333 not found"
 
 def test_add_customer_positive(mocker):
 

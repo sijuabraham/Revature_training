@@ -26,7 +26,7 @@ def get_customer_by_customer_id(customer_id):
 
     except CustomerNotFoundError as e:
         return{
-            "message": f"Customer with customer_id {customer_id} was not found "
+            "message": str(e)
         }, 404
 
 
@@ -40,7 +40,7 @@ def del_customer_by_customer_id(customer_id):
             }
     except CustomerNotFoundError as e:
         return {
-                "message": f"Customer with customer_id {customer_id} not found"
+                "message": str(e)
             }, 404
 
 
