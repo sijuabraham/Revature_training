@@ -75,9 +75,8 @@ class AccountDao:
                                  password="postgres123") as conn:
                 with conn.cursor() as cur:
 
-                    cur.execute("update accounts set id = %s, balance = %s, cust_id = %s, account_type_id = %s where  id = %s returning *",
-                    (account_object.id, account_object.balance, account_object.cust_id,
-                     account_object.account_type_id, account_object.id))
+                    cur.execute("update accounts set id = %s, balance = %s, cust_id = %s, account_type_id = %s where  cust_id = %s and id = %s returning *",
+                    (account_object.id, account_object.balance, account_object.cust_id, account_object.account_type_id, account_object.cust_id, account_object.id))
                     customer_row = cur.rowcount
                     if customer_row != 1:
                         return False

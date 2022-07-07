@@ -72,11 +72,11 @@ def get_accounts_by_customer_id_and_account_id(customer_id, account_id):
         return {
 
 
-            "message": f"Customer with customer_id {customer_id} not found"
+            "message": f"Customer with customer_id{customer_id}  not found"
          }, 404
     except AccountNotFoundError as e:
         return {
-            "message": f"Customer with Account_id {account_id} not found"
+            "message": f"The account_id {account_id} does not belong to Customer with Customer_id {customer_id} "
          }, 404
 
 
@@ -94,17 +94,22 @@ def add_accounts_for_customer_by_customer_id(customer_id):
                    "message": f"Customer with Customer_id {customer_id} is not found"
                }, 400
 
-@tc.route('/customers/<customer_id>/accounts/<id>', methods=['PUT'])
-def update_accounts_for_customer_by_customer_id(customer_id, id):
+@tc.route('/customers/<cust_id>/accounts/<a_id>', methods=['PUT'])
+def update_accounts_for_customer_by_customer_id(cust_id, a_id):
     account_json_dictionary = request.get_json()
-    account_object = Account(id, account_json_dictionary['balance'], account_json_dictionary['cust_id'], account_json_dictionary['account_type_id'])
+    account_object = Account(a_id, account_json_dictionary['balance'], account_json_dictionary['cust_id'], account_json_dictionary['account_type_id'])
     try:
-        return account_service.update_accounts_for_customer_by_customer_id(account_object)
+        return account_service.update_accounts_for_customer_by_customer_id(account_object,cust_id)
 
     except CustomerNotFoundError as e:
         return {
-                   "message": f"Customer with customer_id {customer_id} not found !"
+                   "message": f"Customer with customer_id {cust_id} not found !"
                }, 404
+    except AccountNotFoundError as e:
+        return {
+                    "message": f"The account_id {account_object.id} does not belong to Customer with Customer_id {account_object.cust_id} "
+
+        }
 
 @tc.route('/customers/<customer_id>/accounts/<a_id>', methods=['DELETE'])
 def del_accounts_for_customer_by_customer_id(customer_id, a_id):
@@ -118,3 +123,8 @@ def del_accounts_for_customer_by_customer_id(customer_id, a_id):
         return {
                 "message": f"Customer with customer_id{customer_id} not found"
             }, 404
+    except AccountNotFoundError as e:
+        return {
+                    "message": f"The account_id {a_id} does not belong to Customer with Customer_id {customer_id} "
+
+        }
