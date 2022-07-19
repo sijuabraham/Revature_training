@@ -6,7 +6,6 @@ import copy
 
 
 class CustomerDao:
-
     def get_all_customers(self):
         with psycopg.connect(host="127.0.0.1", port="5432", dbname="postgres", user="postgres", password="postgres123") as conn:
 
