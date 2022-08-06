@@ -51,13 +51,16 @@ values('Ben22', 1200, 'Lodging', 'Had to move due to placement');
 insert into ers_reimbursements (reimb_author, reimbursement_amount, reimb_type, description) 
 values('Carol88', 200, 'Lodging', 'Temporarily staying in Houston for renovations');
 
+
+SELECT * FROM ers_users;
+SELECT * FROM ers_reimbursements;
+
 -- SQL Queries
 UPDATE ers_reimbursements
 SET status = 'approved', resolved = current_timestamp, reimb_resolver = 'Siju78'
 WHERE reimb_id = '4'
 
-SELECT * FROM ers_users;
-SELECT * FROM ers_reimbursements;
+
 
 SELECT * FROM ers_reimbursements
 WHERE reimb_author = 'Carol88';
@@ -73,4 +76,7 @@ FROM ers_users
 LEFT JOIN ers_reimbursements ON ers_users.username = ers_reimbursements.reimb_author
 GROUP BY ers_users.username
 ORDER BY ers_reimbursements.reimb_id ASC;
+--
+
+create database proj2_tgm;
 ```
