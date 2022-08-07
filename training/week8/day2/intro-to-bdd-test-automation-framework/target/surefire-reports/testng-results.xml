@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
+  <reporter-output>
+  </reporter-output>
+  <suite name="My Test Suite" duration-ms="31222" started-at="2022-08-07T19:16:21 EDT" finished-at="2022-08-07T19:16:52 EDT">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test name="My Regression Tests" duration-ms="31222" started-at="2022-08-07T19:16:21 EDT" finished-at="2022-08-07T19:16:52 EDT">
+      <class name="com.revature.runner.TestRunner">
+        <test-method status="PASS" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="setUpClass" is-config="true" duration-ms="484" started-at="2022-08-07T19:16:21 EDT" finished-at="2022-08-07T19:16:22 EDT">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@885e7ff]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="setup" is-config="true" duration-ms="5644" started-at="2022-08-07T19:16:22 EDT" finished-at="2022-08-07T19:16:27 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="runScenario" duration-ms="4312" started-at="2022-08-07T19:16:27 EDT" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-08-07T19:16:32 EDT">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Valid Login #1"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["login"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="tearDown" is-config="true" duration-ms="833" started-at="2022-08-07T19:16:32 EDT" finished-at="2022-08-07T19:16:32 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="setup" is-config="true" duration-ms="1772" started-at="2022-08-07T19:16:32 EDT" finished-at="2022-08-07T19:16:34 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="runScenario" duration-ms="3951" started-at="2022-08-07T19:16:34 EDT" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-08-07T19:16:38 EDT">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Valid Login #2"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["login"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="tearDown" is-config="true" duration-ms="823" started-at="2022-08-07T19:16:38 EDT" finished-at="2022-08-07T19:16:39 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="setup" is-config="true" duration-ms="1942" started-at="2022-08-07T19:16:39 EDT" finished-at="2022-08-07T19:16:41 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="runScenario" duration-ms="4051" started-at="2022-08-07T19:16:41 EDT" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-08-07T19:16:45 EDT">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Valid Login"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["login"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="tearDown" is-config="true" duration-ms="797" started-at="2022-08-07T19:16:45 EDT" finished-at="2022-08-07T19:16:46 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="setup" is-config="true" duration-ms="1759" started-at="2022-08-07T19:16:46 EDT" finished-at="2022-08-07T19:16:47 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="runScenario" duration-ms="3957" started-at="2022-08-07T19:16:47 EDT" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2022-08-07T19:16:51 EDT">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Valid Login"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["login"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="tearDown" is-config="true" duration-ms="811" started-at="2022-08-07T19:16:51 EDT" finished-at="2022-08-07T19:16:52 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:com.revature.runner.TestRunner@17d0685f]" name="tearDownClass" is-config="true" duration-ms="20" started-at="2022-08-07T19:16:52 EDT" finished-at="2022-08-07T19:16:52 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- com.revature.runner.TestRunner -->
+    </test> <!-- My Regression Tests -->
+  </suite> <!-- My Test Suite -->
+</testng-results>
